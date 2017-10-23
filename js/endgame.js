@@ -129,6 +129,11 @@ $(function() {
 
   evaluate(game_params, totals);
 
+  $("#reset").click(function(){
+    reset_totals();
+    evaluate(game_params, totals);
+  });
+  
   $.each(game_params, function(key, value) {
     $("#" + key + "-dd li a").click(function() {
 
