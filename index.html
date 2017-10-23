@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Great Energy Escape End Game Calculator</title>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="alert alert-success" role="alert" id="gen_success">Generation target met!</div>
+  <div class="alert alert-danger" role="alert" id="gen_failure_low">Not enough generation!</div>
+  <div class="alert alert-danger" role="alert" id="gen_failure_high">Too much generation!</div>
+  <div class="alert alert-success" role="alert" id="co2_success">CO2 emissions are below threshold!</div>
+  <div class="alert alert-danger" role="alert" id="co2_failure">CO2 emissions too high!</div>
+  <div class="alert alert-success" role="alert" id="cost_success">Cost is in budget!</div>
+  <div class="alert alert-danger" role="alert" id="cost_failure">Cost is too high!</div>
+
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href='#'>
+      <img src="img/wind.png" alt="wind">
+	  </a>
+        <div class="caption">
+          <p>Wind</p>
+          <p>
+            <div class="btn-group" role="group" aria-label="Wind">
+              <button id="wind-down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"/></button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="selection">0</span>
+    <span class="caret"></span>
+  </button>
+                <ul id="wind-dd" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+              <button id="wind-up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href='#'>
+      <img src="img/solarPV.png" alt="solarPV">
+	  </a>
+        <div class="caption">
+          <p>Solar PV</p>
+          <p>
+            <div class="btn-group" role="group" aria-label="SolarPV">
+              <button id="solarPV-down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="selection">0</span>
+    <span class="caret"></span>
+  </button>
+                <ul id="solarPV-dd" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+              <button id="solarPV-up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href='#'>
+      <img src="img/hydro.png" alt="hydro">
+	  </a>
+        <div class="caption">
+          <p>Hydro</p>
+          <p>
+            <div class="btn-group" role="group" aria-label="SolarPV">
+              <button id="hydro-down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="selection">0</span>
+    <span class="caret"></span>
+  </button>
+                <ul id="hydro-dd" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+              <button id="hydro-up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href='#'>
+      <img src="img/gas.png" alt="gas">
+	  </a>
+        <div class="caption">
+          <p>Gas</p>
+          <p>
+            <div class="btn-group" role="group" aria-label="gas">
+              <button id="gas-down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="selection">0</span>
+    <span class="caret"></span>
+  </button>
+                <ul id="gas-dd" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+              <button id="gas-up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href='#'>
+      <img src="img/tidal.png" alt="tidal">
+	  </a>
+        <div class="caption">
+          <p>Tidal</p>
+          <p>
+            <div class="btn-group" role="group" aria-label="tidal">
+              <button id="tidal-down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="selection">0</span>
+    <span class="caret"></span>
+  </button>
+                <ul id="tidal-dd" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+              <button id="tidal-up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href='#'>
+      <img src="img/coal.png" alt="coal">
+	  </a>
+        <div class="caption">
+          <p>Coal</p>
+          <p>
+            <div class="btn-group" role="group" aria-label="coal">
+              <button id="coal-down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="selection">0</span>
+    <span class="caret"></span>
+  </button>
+                <ul id="coal-dd" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+              <button id="coal-up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href='#'>
+      <img src="img/biomass.png" alt="biomass">
+	  </a>
+        <div class="caption">
+          <p>Biomass</p>
+          <p>
+            <div class="btn-group" role="group" aria-label="biomass">
+              <button id="biomass-down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="selection">0</span>
+    <span class="caret"></span>
+  </button>
+                <ul id="biomass-dd" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+              <button id="biomass-up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href='#'>
+      <img src="img/smartGrids.png" alt="smartGrids">
+	  </a>
+        <div class="caption">
+          <p>Smart Grids</p>
+          <p>
+            <div class="btn-group" role="group" aria-label="smartGrids">
+              <button id="smartGrids-down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="selection">0</span>
+    <span class="caret"></span>
+  </button>
+                <ul id="smartGrids-dd" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+              <button id="smartGrids-up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href='#'>
+      <img src="img/smartMeters.png" alt="smartMeters">
+	  </a>
+        <div class="caption">
+          <p>Smart Meters</p>
+          <p>
+            <div class="btn-group" role="group" aria-label="gas">
+              <button id="smartMeters-down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="selection">0</span>
+    <span class="caret"></span>
+  </button>
+                <ul id="smartMeters-dd" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+              <button id="smartMeters-up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href='#'>
+      <img src="img/energyEfficiency.png" alt="energyEfficiency">
+	  </a>
+        <div class="caption">
+          <p>Energy Efficiency</p>
+          <p>
+            <div class="btn-group" role="group" aria-label="gas">
+              <button id="energyEfficiency-down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></button>
+              <div class="btn-group" role="group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="selection">0</span>
+    <span class="caret"></span>
+  </button>
+                <ul id="energyEfficiency-dd" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul>
+              </div>
+              <button id="energyEfficiency-up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <script src="js/endgame.js"></script>
+</body>
+
+</html>
