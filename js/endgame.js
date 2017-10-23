@@ -135,7 +135,7 @@ $(function() {
       $(this).parents(".btn-group").find('.selection').text($(this).text());
       $(this).parents(".btn-group").find('.selection').val($(this).text());
       totals[key] = Number($(this).text());
-      console.log(totals[key]);
+      
       evaluate(game_params, totals);
 
     })
