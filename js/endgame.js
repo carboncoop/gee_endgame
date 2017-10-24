@@ -79,7 +79,7 @@ var decrement = function(name, totals) {
 };
 
 var reset_totals = function(totals) {
-  for (gen_type in totals.keys()) {
+  for (var gen_type in totals) {
     totals[gen_type] = 0;
   }
   return;
@@ -130,17 +130,21 @@ $(function() {
   evaluate(game_params, totals);
 
   $("#reset").click(function(){
-    reset_totals();
+    reset_totals(totals);
     evaluate(game_params, totals);
+    $.each(game_params, function(key, value) {
+      $("#" + key + "-dd li a").parents(".btn-group").find('.selection').text(0);
+      $("#" + key + "-dd li a").parents(".btn-group").find('.selection').val(0);
+    })
   });
-  
+
   $.each(game_params, function(key, value) {
     $("#" + key + "-dd li a").click(function() {
 
       $(this).parents(".btn-group").find('.selection').text($(this).text());
       $(this).parents(".btn-group").find('.selection').val($(this).text());
       totals[key] = Number($(this).text());
-      
+
       evaluate(game_params, totals);
 
     })
